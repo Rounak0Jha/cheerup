@@ -2,73 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
   <title>For You</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <main class="site">
-    <div class="background"></div>
+    <!-- Real image element instead of CSS-only background.
+         This makes the portrait image reliable on phones and tablets. -->
+    <img class="background-img" src="assets/background.png" alt="" aria-hidden="true">
     <div class="soft-overlay"></div>
 
     <section class="intro" id="intro">
-      <p class="small">A little something for you</p>
-      <h1>I wanted to tell you something.</h1>
-      <button id="enterBtn">ENTER</button>
+      <div class="content">
+        <p class="small">A little something for you</p>
+        <h1>I wanted to tell you something.</h1>
+        <button id="enterBtn">ENTER</button>
+      </div>
     </section>
 
     <section class="message hidden" id="message">
-      <p class="small">Just so you know...</p>
-      <h2>Someone admires you.</h2>
-      <p class="body">
-        Maybe you don't always see what other people see in you.<br>
-        But someone does.
-      </p>
-      <button id="revealBtn">tell me more</button>
+      <div class="content">
+        <p class="small">Just so you know...</p>
+        <h2>Someone admires you.</h2>
+        <p class="body">
+          Maybe you don't always see what other people see in you.<br>
+          But someone does.
+        </p>
+        <button id="revealBtn">tell me more</button>
+      </div>
     </section>
 
     <section class="final hidden" id="final">
-      <p class="small">One last thing</p>
-      <h2>You're more appreciated than you think.</h2>
-      <p class="body">
-        So whatever kind of day you're having,<br>
-        take a breath, smile a little...
-      </p>
-      <h3>and cheer up.</h3>
-      <p class="signature">— someone who notices</p>
-      <button id="giftBtn">there's a little gift for you</button>
+      <div class="content">
+        <p class="small">One last thing</p>
+        <h2>You're more appreciated than you think.</h2>
+        <p class="body">
+          So whatever kind of day you're having,<br>
+          take a breath, smile a little...
+        </p>
+        <h3>and cheer up.</h3>
+        <p class="signature">— someone who notices</p>
+        <button id="giftBtn">there's a little gift for you</button>
+      </div>
     </section>
 
     <section class="gift hidden" id="gift">
-      <p class="small">For tomorrow</p>
-      <h2>A little help for your exam.</h2>
-      <p class="body">
-        I thought you might find these useful.<br>
-        They're handwritten notes, just for you.
-      </p>
+      <div class="content">
+        <p class="small">For tomorrow</p>
+        <h2>A little help for your exam.</h2>
+        <p class="body">
+          I thought you might find these useful.<br>
+          They're handwritten notes, just for you.
+        </p>
 
-      <div class="gift-card">
-        <div class="paper-icon">✦</div>
-        <div>
-          <p class="file-name">PPS HANDWRITTEN NOTES</p>
-          <p class="file-info">35 pages · handwritten notes</p>
+        <div class="gift-card">
+          <div class="paper-icon">✦</div>
+          <div>
+            <p class="file-name">PPS HANDWRITTEN NOTES</p>
+            <p class="file-info">35 pages · handwritten notes</p>
+          </div>
         </div>
+
+        <a class="download-btn"
+           href="assets/PPS_HANDWRITTEN_NOTES.pdf"
+           download="PPS-Handwritten-Notes.pdf">
+          DOWNLOAD YOUR NOTES
+        </a>
+
+        <a class="view-link"
+           href="assets/PPS_HANDWRITTEN_NOTES.pdf"
+           target="_blank"
+           rel="noopener">
+          or view them first
+        </a>
+
+        <p class="gift-note">Good luck tomorrow. You've got this.</p>
       </div>
-
-      <a class="download-btn"
-         href="assets/PPS_HANDWRITTEN_NOTES.pdf"
-         download="PPS-Handwritten-Notes.pdf">
-        DOWNLOAD YOUR NOTES
-      </a>
-
-      <a class="view-link"
-         href="assets/PPS_HANDWRITTEN_NOTES.pdf"
-         target="_blank"
-         rel="noopener">
-        or view them first
-      </a>
-
-      <p class="gift-note">Good luck tomorrow. You've got this.</p>
     </section>
 
     <div class="sound">

@@ -3,59 +3,87 @@
   --grey: #b5b5b5;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html, body {
+html {
   width: 100%;
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
+  min-height: 100%;
   background: #000;
 }
 
 body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  background: #000;
   color: var(--white);
   font-family: Georgia, "Times New Roman", serif;
 }
 
 .site {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
   overflow: hidden;
   background: #000;
 }
 
-.background {
-  position: absolute;
+/* Using an actual <img> prevents mobile browsers from losing the CSS background. */
+.background-img {
+  position: fixed;
+  z-index: 0;
   inset: 0;
-  background: url("../assets/background.png") center center / cover no-repeat;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  user-select: none;
+  pointer-events: none;
 }
 
 .soft-overlay {
-  position: absolute;
+  position: fixed;
+  z-index: 1;
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(0,0,0,.34), rgba(0,0,0,.08) 48%, rgba(0,0,0,.22)),
-    linear-gradient(0deg, rgba(0,0,0,.18), rgba(0,0,0,0) 45%, rgba(0,0,0,.08));
+    linear-gradient(90deg, rgba(0,0,0,.32), rgba(0,0,0,.07) 48%, rgba(0,0,0,.20)),
+    linear-gradient(0deg, rgba(0,0,0,.16), rgba(0,0,0,0) 50%, rgba(0,0,0,.07));
 }
 
+/* Each screen is centered and remains usable on smaller displays. */
 .intro, .message, .final, .gift {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding:
+    max(28px, env(safe-area-inset-top))
+    max(22px, env(safe-area-inset-right))
+    max(80px, env(safe-area-inset-bottom))
+    max(22px, env(safe-area-inset-left));
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 30px;
   transition: opacity .8s ease, transform .8s ease;
 }
 
-.intro { background: rgba(0,0,0,.08); }
+.content {
+  width: min(900px, 100%);
+}
 
-.intro h1, .message h2, .final h2, .gift h2 {
+.intro { background: rgba(0,0,0,.07); }
+
+.intro h1,
+.message h2,
+.final h2,
+.gift h2 {
   margin: 0;
   max-width: 900px;
   text-shadow: 0 2px 18px rgba(0,0,0,.75);
@@ -76,7 +104,8 @@ body {
   text-shadow: 0 1px 10px #000;
 }
 
-button, .download-btn {
+button,
+.download-btn {
   color: #eee;
   background: rgba(10,10,10,.42);
   border: 1px solid rgba(255,255,255,.5);
@@ -84,7 +113,8 @@ button, .download-btn {
   transition: background .3s ease, border-color .3s ease, transform .3s ease;
 }
 
-button:hover, .download-btn:hover {
+button:hover,
+.download-btn:hover {
   background: rgba(255,255,255,.14);
   border-color: #fff;
   transform: translateY(-2px);
@@ -111,9 +141,10 @@ button:hover, .download-btn:hover {
   text-shadow: 0 2px 12px #000;
 }
 
-.final { background: rgba(0,0,0,.16); }
+.final { background: rgba(0,0,0,.14); }
 
-.final h2, .gift h2 {
+.final h2,
+.gift h2 {
   font-size: clamp(40px, 6vw, 82px);
   line-height: 1;
   font-weight: 400;
@@ -135,19 +166,15 @@ button:hover, .download-btn:hover {
 }
 
 .gift {
-  background: rgba(0,0,0,.10);
-}
-
-.gift h2 {
-  max-width: 850px;
+  background: rgba(0,0,0,.09);
 }
 
 .gift-card {
   display: flex;
   align-items: center;
   gap: 18px;
-  width: min(460px, 88vw);
-  margin-top: 28px;
+  width: min(460px, 100%);
+  margin: 28px auto 0;
   padding: 18px 22px;
   text-align: left;
   background: rgba(5,5,5,.55);
@@ -156,6 +183,7 @@ button:hover, .download-btn:hover {
 }
 
 .paper-icon {
+  flex: 0 0 42px;
   display: grid;
   place-items: center;
   width: 42px;
@@ -187,6 +215,7 @@ button:hover, .download-btn:hover {
 }
 
 .view-link {
+  display: inline-block;
   margin-top: 14px;
   color: #aaa;
   font: 11px Arial, sans-serif;
@@ -205,30 +234,135 @@ button:hover, .download-btn:hover {
 }
 
 .hidden {
+  display: none !important;
   opacity: 0;
   pointer-events: none;
   transform: translateY(12px);
 }
 
 .sound {
-  position: absolute;
-  right: 24px;
-  bottom: 22px;
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
   z-index: 10;
 }
 
 .sound button {
   padding: 8px 11px;
   border: 0;
-  background: rgba(0,0,0,.35);
+  background: rgba(0,0,0,.38);
   color: #ccc;
   font: 10px Arial, sans-serif;
   letter-spacing: .12em;
 }
 
-@media (max-width: 800px) {
-  .background { background-position: 58% center; }
-  .body br { display: none; }
-  .soft-overlay { background: rgba(0,0,0,.16); }
-  .gift-card { padding: 15px; }
+/* Phones: preserve the portrait image and make every screen fit comfortably. */
+@media (max-width: 600px) {
+  .site {
+    min-height: 100svh;
+  }
+
+  .background-img {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .intro, .message, .final, .gift {
+    min-height: 100svh;
+    padding: 28px 20px 86px;
+  }
+
+  .intro h1 {
+    font-size: clamp(34px, 10vw, 52px);
+    line-height: 1.04;
+  }
+
+  .message h2,
+  .final h2,
+  .gift h2 {
+    font-size: clamp(36px, 10vw, 56px);
+    line-height: 1.03;
+  }
+
+  .body {
+    font-size: 14px;
+    line-height: 1.65;
+    max-width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .body br {
+    display: none;
+  }
+
+  #enterBtn, #revealBtn, #giftBtn {
+    min-height: 46px;
+    padding: 13px 22px;
+  }
+
+  .gift-card {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .file-name {
+    font-size: 10px;
+  }
+
+  .download-btn {
+    width: min(100%, 330px);
+    min-height: 48px;
+    padding: 15px 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sound {
+    right: 14px;
+    bottom: 12px;
+  }
+
+  .sound button {
+    min-height: 36px;
+  }
+}
+
+/* Very small phones: reduce spacing rather than allowing content to clip. */
+@media (max-width: 380px), (max-height: 650px) {
+  .intro, .message, .final, .gift {
+    padding-top: 20px;
+    padding-bottom: 72px;
+  }
+
+  .small {
+    margin-bottom: 12px;
+    font-size: 9px;
+  }
+
+  .body {
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  #enterBtn, #revealBtn, #giftBtn {
+    margin-top: 22px;
+  }
+
+  .gift-card {
+    margin-top: 18px;
+  }
+
+  .gift-note {
+    margin-top: 14px;
+  }
+}
+
+/* Tablets in portrait: keep the original portrait photo centered. */
+@media (min-width: 601px) and (max-width: 900px) and (orientation: portrait) {
+  .background-img {
+    object-fit: cover;
+    object-position: center center;
+  }
 }
