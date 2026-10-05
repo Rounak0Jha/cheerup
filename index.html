@@ -9,81 +9,105 @@
 </head>
 <body>
   <main class="site">
-    <!-- Real image element instead of CSS-only background.
-         This makes the portrait image reliable on phones and tablets. -->
-    <img class="background-img" src="assets/background.png" alt="" aria-hidden="true">
+
+    <!--
+      The landscape image is deliberately NOT cropped into each mobile screen.
+      The camera pans across this single image so the visitor sees different
+      parts of the same room as they move through the story.
+    -->
+    <div class="camera">
+      <img id="backgroundImage"
+           src="assets/background.png"
+           alt=""
+           aria-hidden="true">
+    </div>
+
     <div class="soft-overlay"></div>
 
-    <section class="intro" id="intro">
-      <div class="content">
-        <p class="small">A little something for you</p>
-        <h1>I wanted to tell you something.</h1>
-        <button id="enterBtn">ENTER</button>
-      </div>
-    </section>
+    <div class="content-track" id="contentTrack">
 
-    <section class="message hidden" id="message">
-      <div class="content">
-        <p class="small">Just so you know...</p>
-        <h2>Someone admires you.</h2>
-        <p class="body">
-          Maybe you don't always see what other people see in you.<br>
-          But someone does.
-        </p>
-        <button id="revealBtn">tell me more</button>
-      </div>
-    </section>
-
-    <section class="final hidden" id="final">
-      <div class="content">
-        <p class="small">One last thing</p>
-        <h2>You're more appreciated than you think.</h2>
-        <p class="body">
-          So whatever kind of day you're having,<br>
-          take a breath, smile a little...
-        </p>
-        <h3>and cheer up.</h3>
-        <p class="signature">— someone who notices</p>
-        <button id="giftBtn">there's a little gift for you</button>
-      </div>
-    </section>
-
-    <section class="gift hidden" id="gift">
-      <div class="content">
-        <p class="small">For tomorrow</p>
-        <h2>A little help for your exam.</h2>
-        <p class="body">
-          I thought you might find these useful.<br>
-          They're handwritten notes, just for you.
-        </p>
-
-        <div class="gift-card">
-          <div class="paper-icon">✦</div>
-          <div>
-            <p class="file-name">PPS HANDWRITTEN NOTES</p>
-            <p class="file-info">35 pages · handwritten notes</p>
-          </div>
+      <!-- 0: Opening -->
+      <section class="panel active" data-panel="0">
+        <div class="content">
+          <p class="small">A little something for you</p>
+          <h1>I wanted to tell you something.</h1>
+          <button class="next-btn" data-next="1">ENTER</button>
         </div>
+      </section>
 
-        <a class="download-btn"
-           href="assets/PPS_HANDWRITTEN_NOTES.pdf"
-           download="PPS-Handwritten-Notes.pdf">
-          DOWNLOAD YOUR NOTES
-        </a>
+      <!-- 1: First message -->
+      <section class="panel" data-panel="1">
+        <div class="content">
+          <p class="small">Just so you know...</p>
+          <h2>Someone admires you.</h2>
+          <p class="body">
+            Maybe you don't always see what other people see in you.<br>
+            But someone does.
+          </p>
+          <button class="next-btn" data-next="2">tell me more</button>
+        </div>
+      </section>
 
-        <a class="view-link"
-           href="assets/PPS_HANDWRITTEN_NOTES.pdf"
-           target="_blank"
-           rel="noopener">
-          or view them first
-        </a>
+      <!-- 2: Encouragement -->
+      <section class="panel" data-panel="2">
+        <div class="content">
+          <p class="small">One last thing</p>
+          <h2>You're more appreciated than you think.</h2>
+          <p class="body">
+            Whatever kind of day you're having,<br>
+            take a breath, smile a little...
+          </p>
+          <h3>and cheer up.</h3>
+          <p class="signature">— someone who notices</p>
+          <button class="next-btn" data-next="3">there's a little gift for you</button>
+        </div>
+      </section>
 
-        <p class="gift-note">Good luck for tomorrow. You've got this.</p>
-      </div>
-    </section>
+      <!-- 3: PDF gift -->
+      <section class="panel gift-panel" data-panel="3">
+        <div class="content">
+          <p class="small">For tomorrow</p>
+          <h2>A little help for your exam.</h2>
+          <p class="body">
+            I thought you might find these useful.<br>
+            They're handwritten notes, just for you.
+          </p>
+
+          <div class="gift-card">
+            <div class="paper-icon">✦</div>
+            <div>
+              <p class="file-name">PPS HANDWRITTEN NOTES</p>
+              <p class="file-info">35 pages · handwritten notes</p>
+            </div>
+          </div>
+
+          <a class="download-btn"
+             href="assets/PPS_HANDWRITTEN_NOTES.pdf"
+             download="PPS-Handwritten-Notes.pdf">
+            DOWNLOAD YOUR NOTES
+          </a>
+          <br>
+          <a class="view-link"
+             href="assets/PPS_HANDWRITTEN_NOTES.pdf"
+             target="_blank"
+             rel="noopener">
+            or view them first
+          </a>
+
+          <p class="gift-note">Good luck tomorrow. You've got this.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="progress" aria-hidden="true">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
 
     <div class="sound">
-      <button id="soundBtn">♫ <span id="soundText">SOUND</span></button>
+      <button id="soundBtn" type="button">♫ <span id="soundText">SOUND</span></button>
     </div>
   </main>
 
